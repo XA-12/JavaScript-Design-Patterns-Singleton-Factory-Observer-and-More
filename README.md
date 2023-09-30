@@ -1,0 +1,1 @@
+# JavaScript-Design-Patterns-Singleton-Factory-Observer-and-More
