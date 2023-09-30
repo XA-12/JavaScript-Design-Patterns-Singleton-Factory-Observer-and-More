@@ -24,23 +24,17 @@ system, like managing a configuration object or a connection pool.
 
 To implement the Singleton pattern, you can create a class like this:
 
-javascript
+JavaScript
 
 class Singleton {
-
-constructor() {
-
-if (!Singleton.instance) {
-
-Singleton.instance = this;
-
+  constructor() {
+    if (!Singleton.instance) {
+      Singleton.instance = this;
+    }
+    return Singleton.instance;
+  }
 }
 
-return Singleton.instance;
-
-}
-
-}
 
 The Singleton pattern prevents unnecessary duplication of objects, conserving resources and ensuring
 
@@ -61,23 +55,14 @@ Here's a simple example of a factory function in JavaScript:
 javascript
 
 function createProduct(type) {
-
-switch (type) {
-
-case 'A':
-
-return new ProductA();
-
-case 'B':
-
-return new ProductB();
-
-default:
-
-throw new Error('Invalid product type.');
-
-}
-
+  switch (type) {
+    case 'A':
+      return new ProductA();
+    case 'B':
+      return new ProductB();
+    default:
+      throw new Error('Invalid product type.');
+  }
 }
 
 The Factory pattern abstracts the process of object creation, making your code more maintainable
@@ -98,38 +83,27 @@ handling systems in JavaScript.
 
 Here's a basic implementation of the Observer pattern:
 
+
 javascript
 
 class Subject {
+  constructor() {
+    this.observers = [];
+  }
 
-constructor() {
+  addObserver(observer) {
+    this.observers.push(observer);
+  }
 
-this.observers = [];
-
-}
-
-addObserver(observer) {
-
-this.observers.push(observer);
-
-}
-
-notify() {
-
-this.observers.forEach(observer => observer.update());
-
-}
-
+  notify() {
+    this.observers.forEach(observer => observer.update());
+  }
 }
 
 class Observer {
-
-update() {
-
-// Perform update logic here
-
-}
-
+  update() {
+    // Perform update logic here
+  }
 }
 
 The Observer pattern promotes loose coupling between objects, making your code more maintainable
@@ -151,27 +125,18 @@ Here's a simple example of the Module pattern:
 javascript
 
 const MyModule = (function () {
+  const privateVar = 'I am private!';
 
-const privateVar = 'I am private!';
+  function privateFunction() {
+    return 'I am also private!';
+  }
 
-function privateFunction() {
-
-return 'I am also private!';
-
-}
-
-return {
-
-publicVar: 'I am public!',
-
-publicFunction: function () {
-
-return 'I am also public!';
-
-},
-
-};
-
+  return {
+    publicVar: 'I am public!',
+    publicFunction: function () {
+      return 'I am also public!';
+    },
+  };
 })();
 
 The Module pattern promotes encapsulation, reducing the risk of naming collisions and improving code
@@ -191,30 +156,21 @@ Here's a simplified example of the Decorator pattern:
 javascript
 
 class Coffee {
-
-cost() {
-
-return 5;
-
-}
-
+  cost() {
+    return 5;
+  }
 }
 
 class MilkDecorator {
+  constructor(coffee) {
+    this.coffee = coffee;
+  }
 
-constructor(coffee) {
-
-this.coffee = coffee;
-
+  cost() {
+    return this.coffee.cost() + 2;
+  }
 }
 
-cost() {
-
-return this.coffee.cost() + 2;
-
-}
-
-}
 
 The Decorator pattern enables you to mix and match features or functionalities in a flexible manner,
 
